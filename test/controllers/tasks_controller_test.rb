@@ -15,4 +15,12 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
       assert_response 200
     end
   end
+
+  test "show" do
+    get "/tasks/#{Task.first.id}.json"
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal ["id", "title", "start_time", "end_time", "description", "created_at", "updated_at"], data.keys
+  end
 end

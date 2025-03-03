@@ -29,4 +29,10 @@ class TasksController < ApplicationController
     )
     render :show
   end
+
+  def destroy
+    @task = Task.find_by(id: params[:id])
+    @task.destroy
+    render json: { message: "Task destroyed successfully" }
+  end
 end

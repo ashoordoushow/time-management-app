@@ -26,10 +26,17 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
 
   test "update" do
     task = Task.first
-    patch "/photos/#{task.id}.json", params: { title: "Updated title" }
+    patch "/tasks/#{task.id}.json", params: { title: "Updated title" }
     assert_response 200
 
     data = JSON.parse(response.body)
     assert_equal "Updated title", data["title"]
+  end
+
+  test "destroy" do
+    assert_difference "Task.count", -1 do
+      delete "/tasks/#{Task.first.id}.json"
+      assert_response 200
+    end
   end
 end

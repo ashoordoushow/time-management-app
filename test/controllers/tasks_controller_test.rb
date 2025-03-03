@@ -23,4 +23,13 @@ class TasksControllerTest < ActionDispatch::IntegrationTest
     data = JSON.parse(response.body)
     assert_equal ["id", "title", "start_time", "end_time", "description", "created_at", "updated_at"], data.keys
   end
+
+  test "update" do
+    task = Task.first
+    patch "/photos/#{task.id}.json", params: { title: "Updated title" }
+    assert_response 200
+
+    data = JSON.parse(response.body)
+    assert_equal "Updated title", data["title"]
+  end
 end

@@ -4,6 +4,8 @@ ruby "3.3.1"
 
 gem 'jwt'
 
+gem 'rack-cors'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.5"
 

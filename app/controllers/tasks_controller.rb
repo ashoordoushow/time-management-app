@@ -35,4 +35,8 @@ class TasksController < ApplicationController
     @task.destroy
     render json: { message: "Task destroyed successfully" }
   end
+
+  def task_params
+    params.require(:task).permit(:title, :url, :start_time, :end_time, :description, :priority, :required_time, :reminder)
+  end  
 end
